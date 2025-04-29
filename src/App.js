@@ -112,7 +112,10 @@ function App() {
         <div className="menu-nav-content">
           {/* Logo e toggle para menu mobile */}
           <div className="menu-mobile">
-            <a href="/" className="logo">
+            <a href="#" className="logo" onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}>
               <i className="fas fa-utensils"></i>
               <span>Gourmet</span>
             </a>
@@ -121,8 +124,11 @@ function App() {
             </button>
           </div>
           
-          {/* Logo para telas grandes - agora com media query no CSS */}
-          <a href="/" className="logo">
+          {/* Logo para telas grandes - visível apenas em telas maiores pelo CSS */}
+          <a href="#" className="logo desktop-only-logo" onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}>
             <i className="fas fa-utensils"></i>
             <span>Gourmet</span>
           </a>
@@ -141,18 +147,7 @@ function App() {
             ))}
           </ul>
           
-          {/* Ícone do carrinho no menu desktop */}
-          <div className="desktop-cart-icon">
-            <button 
-              onClick={() => setShowCarrinho(true)}
-              style={{background: 'none', border: 'none', cursor: 'pointer', color: 'white'}}
-            >
-              <i className="fas fa-shopping-cart" style={{fontSize: '1.5rem'}}></i>
-              {carrinho.length > 0 && (
-                <span className="carrinho-count">{carrinho.length}</span>
-              )}
-            </button>
-          </div>
+          {/* Removemos o ícone do carrinho do menu desktop */}
         </div>
       </nav>
 

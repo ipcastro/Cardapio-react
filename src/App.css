@@ -68,6 +68,11 @@ body {
   font-size: 1.8rem;
 }
 
+/* Nova classe para controlar a visibilidade do logo em desktop */
+.desktop-only-logo {
+  display: none;
+}
+
 /* Menu de categorias de comida */
 .menu-items {
   display: flex;
@@ -299,26 +304,7 @@ body {
   font-weight: bold;
 }
 
-/* Estilo do carrinho no menu desktop */
-.desktop-cart-icon {
-  position: relative;
-}
-
-.desktop-cart-icon .carrinho-count {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background: #e74c3c;
-  color: white;
-  font-size: 0.7rem;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-}
+/* Estilo do carrinho no menu desktop - removido */
 
 /* Sidebar do carrinho */
 .carrinho-sidebar {
@@ -577,13 +563,12 @@ body {
     display: none;
   }
   
-  .logo {
-    padding: 10px 0;
-  }
-  
-  .desktop-cart-icon {
+  /* Esconder o logo desktop em mobile */
+  .desktop-only-logo {
     display: none !important;
   }
+  
+  /* Removido a referência ao desktop-cart-icon que não existe mais */
   
   .carrinho-sidebar {
     width: 100%;
@@ -601,5 +586,16 @@ body {
   .footer-content {
     flex-direction: column;
     gap: 20px;
+  }
+}
+
+/* Mostrar o logo desktop apenas em telas maiores */
+@media (min-width: 769px) {
+  .desktop-only-logo {
+    display: flex;
+  }
+  
+  .menu-mobile {
+    display: none;
   }
 }
