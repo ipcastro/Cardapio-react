@@ -10,7 +10,8 @@ function App() {
           nome: 'Bruschetta', 
           preco: 'R$ 25,00', 
           descricao: 'Pão italiano com tomate, manjericão e azeite',
-          imagem: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80',
+          imagem: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80' , 
+         loading:'lazy',
           categoria: 'entrada'
         },
         { 
@@ -18,6 +19,7 @@ function App() {
           preco: 'R$ 35,00', 
           descricao: 'Finas fatias de carne crua com rúcula e parmesão',
           imagem: 'https://www.minhareceita.com.br/app/uploads/2025/02/R1224_Carpaccio_de_Lagarto_com_Pesto_de_Rucula_e_Lascas_de_Parmesao-capa.webp',
+          loading:'lazy',
           categoria: 'entrada'
         },
       ]
@@ -29,7 +31,8 @@ function App() {
           nome: 'Filé Mignon', 
           preco: 'R$ 85,00', 
           descricao: 'Filé mignon grelhado com molho de vinho tinto',
-          imagem: 'https://images.unsplash.com/photo-1558030006-450675393462?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1331&q=80',
+          imagem: 'https://images.unsplash.com/photo-1558030006-450675393462?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1331&q=80',  
+          loading:'lazy',
           categoria: 'prato-principal'
         },
         { 
@@ -37,6 +40,7 @@ function App() {
           preco: 'R$ 75,00', 
           descricao: 'Risoto cremoso com camarões frescos',
           imagem: 'https://s2-receitas.glbimg.com/KWpGf7SHzNbPSab_Z3fmhDOGCmo=/0x0:1080x608/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2022/A/5/RQBWn4SlyzO0JWxYflwg/capa-materia-gshow-102-.png',
+          loading:'lazy',
           categoria: 'prato-principal'
         },
       ]
@@ -49,6 +53,7 @@ function App() {
           preco: 'R$ 25,00', 
           descricao: 'Clássico italiano com café e mascarpone',
           imagem: 'https://br.giallozafferano.com/images/5-598/Tiramisu_650x433_wm.jpg',
+          
           categoria: 'sobremesa'
         },
         { 
@@ -56,7 +61,9 @@ function App() {
           preco: 'R$ 22,00', 
           descricao: 'Cheesecake de frutas vermelhas',
           imagem: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+           
           categoria: 'sobremesa'
+        
         },
       ]
     }
@@ -160,7 +167,7 @@ function App() {
                 {categoria.itens.map((item, itemIndex) => (
                   <div key={itemIndex} className="item-card">
                     <div className="imagem-container">
-                      <img src={item.imagem} alt={item.nome} />
+                      <img src={item.imagem} alt={item.nome} loading='lazy' />
                       <span className={`categoria-badge ${item.categoria}`}>
                         {item.categoria === 'entrada' ? 'Entrada' : 
                          item.categoria === 'prato-principal' ? 'Principal' : 'Sobremesa'}
