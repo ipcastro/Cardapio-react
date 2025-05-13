@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
+
+import React, { Suspense, lazy, useState } from 'react';
 import './App.css';
+
+const Extrainfo = lazy(() => import('./Extrainfo')); // Ajuste o caminho
+
+  
 
 function App() {
   const [categorias] = useState([
@@ -157,6 +162,7 @@ function App() {
           {/* Removemos o ícone do carrinho do menu desktop */}
         </div>
       </nav>
+        
 
       <div className="main-content">
         <main className="menu-container">
@@ -214,7 +220,11 @@ function App() {
               <i className="fas fa-times"></i>
             </button>
           </div>
-          
+
+           <h2>Informações Adicionais</h2>
+      <Suspense fallback={<div>Carregando informações extras...</div>}>
+        <Extrainfo />
+     
           <div className="carrinho-content">
             {carrinho.length === 0 ? (
               <p className="carrinho-vazio">Seu carrinho está vazio</p>
@@ -243,6 +253,7 @@ function App() {
               </>
             )}
           </div>
+          </Suspense>
         </aside>
       </div>
 
@@ -272,5 +283,6 @@ function App() {
     </div>
   );
 }
+ 
 
 export default App;
