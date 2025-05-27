@@ -1,4 +1,16 @@
-/* Estilos gerais */
+/* Reset e variáveis CSS */
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #d4af37;
+  --text-color: #333;
+  --background-color: #fff;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.3s;
+  --skeleton-start: #f0f0f0;
+  --skeleton-end: #e0e0e0;
+}
+
+/* Estilos base otimizados */
 * {
   margin: 0;
   padding: 0;
@@ -6,47 +18,51 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
+  color: var(--text-color);
+  background: var(--background-color);
 }
 
+/* Layout otimizado */
 .App {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Header */
+/* Header otimizado */
 .App-header {
-  background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, #1a252f 100%);
   color: white;
-  padding: 40px 20px;
+  padding: 2rem 1rem;
   text-align: center;
 }
 
 .App-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  margin-bottom: 0.5rem;
 }
 
 .subtitulo {
-  font-size: 1.2rem;
-  color: #d4af37;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: var(--secondary-color);
 }
 
-/* Menu de Navegação - visível em todas as telas */
+/* Menu de navegação otimizado */
 .menu-nav {
-  background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
-  padding: 15px 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: var(--primary-color);
+  padding: 1rem 0;
   position: sticky;
   top: 0;
-  z-index: 999;
-  width: 100%;
+  z-index: 100;
+  contain: content;
 }
 
 .menu-nav-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -139,67 +155,81 @@ body {
   margin: 0 auto;
   padding: 30px 20px;
   position: relative;
+  width: 100%;
 }
 
 /* Categorias e itens */
 .categoria {
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   scroll-margin-top: 100px;
+  width: 100%;
 }
 
 .categoria h2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #2c3e50;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   padding-bottom: 10px;
   border-bottom: 3px solid #d4af37;
+  text-align: left;
 }
 
-.itens-container {
+/* Grid otimizado para itens */
+.categoria-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  contain: content;
+  justify-items: start;
 }
 
+/* Card otimizado */
 .item-card {
-  background: white;
+  background: var(--background-color);
   border-radius: 8px;
+  box-shadow: 0 2px 4px var(--shadow-color);
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  contain: content;
+  will-change: transform;
+  width: 100%;
+  max-width: 300px;
 }
 
-.item-card:hover {
-  transform: translateY(-5px);
-}
-
+/* Estilos para o componente de container de imagem */
 .imagem-container {
   position: relative;
-  height: 200px;
+  width: 100%;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
   overflow: hidden;
+  contain: content;
+  margin-bottom: 1rem;
 }
 
 .imagem-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: opacity var(--transition-speed) ease-in-out;
 }
 
-.item-card:hover .imagem-container img {
-  transform: scale(1.05);
+.imagem-container img.carregando {
+  opacity: 0;
 }
 
+/* Badge otimizado */
 .categoria-badge {
   position: absolute;
-  top: 15px;
-  left: 15px;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
   background: rgba(0, 0, 0, 0.7);
   color: white;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 500;
+  contain: content;
 }
 
 .categoria-badge.entrada {
@@ -214,21 +244,23 @@ body {
   background: #9b59b6;
 }
 
+/* Informações do item otimizadas */
 .item-info {
-  padding: 20px;
+  padding: 1rem;
+  contain: content;
 }
 
 .item-info h3 {
-  font-size: 1.4rem;
-  margin-bottom: 8px;
-  color: #2c3e50;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
 }
 
 .preco {
-  font-size: 1.2rem;
+  font-size: 1.125rem;
   font-weight: 700;
-  color: #d4af37;
-  margin-bottom: 12px;
+  color: var(--secondary-color);
+  margin-bottom: 0.75rem;
 }
 
 .descricao {
@@ -237,25 +269,25 @@ body {
   font-size: 0.95rem;
 }
 
+/* Botões otimizados */
 .adicionar-ao-carrinho {
-  background: #2c3e50;
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--primary-color);
   color: white;
   border: none;
-  padding: 10px 15px;
   border-radius: 4px;
   cursor: pointer;
   font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 8px;
-  transition: background 0.3s;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background var(--transition-speed);
+  contain: content;
 }
 
-.adicionar-ao-carrinho:hover {
-  background: #1a252f;
-}
-
-/* Carrinho flutuante */
+/* Carrinho otimizado */
 .carrinho-container {
   position: fixed;
   bottom: 30px;
@@ -304,21 +336,20 @@ body {
   font-weight: bold;
 }
 
-/* Estilo do carrinho no menu desktop - removido */
-
 /* Sidebar do carrinho */
 .carrinho-sidebar {
   position: fixed;
   top: 0;
-  right: -400px;
-  width: 380px;
+  right: -100%;
+  width: 100%;
+  max-width: 380px;
   height: 100vh;
-  background: white;
-  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  background: var(--background-color);
+  box-shadow: -2px 0 8px var(--shadow-color);
   z-index: 1000;
-  transition: right 0.3s ease;
-  display: flex;
-  flex-direction: column;
+  transition: right var(--transition-speed);
+  contain: content;
+  will-change: transform;
 }
 
 .carrinho-sidebar.active {
@@ -440,42 +471,47 @@ body {
   background: #c4a030;
 }
 
-/* Notificação */
+/* Notificação otimizada */
 .notificacao {
   position: fixed;
-  bottom: 100px;
-  right: 30px;
+  bottom: 5rem;
+  right: 1.5rem;
+  padding: 1rem 1.5rem;
   background: #3AE374;
   color: #116c30;
-  padding: 15px 25px;
   border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px var(--shadow-color);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.5rem;
   animation: fadeIn 0.3s ease, fadeOut 0.3s ease 1.7s forwards;
   z-index: 1000;
+  contain: content;
+  will-change: transform, opacity;
 }
 
 .notificacao i {
   font-size: 1.2rem;
 }
 
+/* Animações otimizadas */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(1rem); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeOut {
   from { opacity: 1; transform: translateY(0); }
-  to { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 0; transform: translateY(-1rem); }
 }
 
-/* Footer */
+/* Footer otimizado */
 .footer {
-  background: #2c3e50;
+  background: var(--primary-color);
   color: white;
-  padding: 40px 20px 20px;
+  padding: 2rem 1rem 1rem;
+  margin-top: auto;
+  contain: content;
 }
 
 .footer-content {
@@ -503,6 +539,8 @@ body {
   color: white;
   font-size: 1.5rem;
   transition: color 0.3s;
+  contain: content;
+  content-visibility: auto;
 }
 
 .social-icons a:hover {
@@ -519,7 +557,7 @@ body {
   color: #aaa;
 }
 
-/* Media Queries para responsividade */
+/* Media queries otimizadas */
 @media (max-width: 768px) {
   .menu-mobile {
     display: flex;
@@ -568,11 +606,8 @@ body {
     display: none !important;
   }
   
-  /* Removido a referência ao desktop-cart-icon que não existe mais */
-  
   .carrinho-sidebar {
     width: 100%;
-    right: -100%;
   }
   
   .item-card {
@@ -587,6 +622,11 @@ body {
     flex-direction: column;
     gap: 20px;
   }
+
+  .categoria-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.5rem;
+  }
 }
 
 /* Mostrar o logo desktop apenas em telas maiores */
@@ -598,4 +638,163 @@ body {
   .menu-mobile {
     display: none;
   }
+}
+
+/* Otimização de performance para fontes */
+@font-face {
+  font-family: 'Roboto';
+  font-display: swap;
+  src: local('Roboto'),
+       url('https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxK.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Otimização de performance para ícones */
+.social-icons a {
+  contain: content;
+  content-visibility: auto;
+}
+
+/* Otimização de performance para carregamento */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  contain: content;
+}
+
+.loading-skeleton {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  contain: content;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-start) 0%,
+    var(--skeleton-end) 50%,
+    var(--skeleton-start) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-content {
+  padding: 1rem;
+}
+
+.skeleton-title {
+  height: 24px;
+  width: 70%;
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-start) 0%,
+    var(--skeleton-end) 50%,
+    var(--skeleton-start) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.skeleton-text {
+  height: 16px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-start) 0%,
+    var(--skeleton-end) 50%,
+    var(--skeleton-start) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-text:last-child {
+  width: 80%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Estilos para o componente de erro de imagem */
+.imagem-erro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  text-align: center;
+  contain: content;
+}
+
+.imagem-erro svg {
+  margin-bottom: 1rem;
+  animation: pulse 2s infinite;
+}
+
+.imagem-erro span {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Estilos para o componente de placeholder de imagem */
+.imagem-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  contain: content;
+}
+
+.imagem-placeholder svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Estilos para o componente de badge */
+.badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  contain: content;
 }
